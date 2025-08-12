@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Crop Yield Prediction</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(120deg, #f6f6f6 60%, #e9ecef 100%);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            position: relative;
+        }
+        .bg-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80') center center/cover no-repeat;
+            opacity: 0.18;
+            pointer-events: none;
+        }
+        .container {
+            max-width: 340px;
+            margin: 48px auto;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+            padding: 24px 16px 16px 16px;
+            position: relative;
+            z-index: 1;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 18px;
+            font-weight: 500;
+        }
+        form {
+            margin-top: 10px;
+        }
+        label {
+            display: block;
+            margin: 8px 0 3px 0;
+            color: #444;
+            font-size: 0.97rem;
+        }
+        input[type=number], select {
+            width: 100%;
+            padding: 7px 9px;
+            margin-bottom: 6px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background: #fafbfc;
+            font-size: 0.97rem;
+            transition: border 0.2s;
+            box-sizing: border-box;
+        }
+        input[type=number]:focus, select:focus {
+            border: 1.5px solid #888;
+            outline: none;
+        }
+        select {
+            max-height: 36px;
+            overflow-y: auto;
+            display: block;
+        }
+        button {
+            width: 100%;
+            padding: 10px 0;
+            background: #444;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 500;
+            margin-top: 12px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background: #222;
+        }
+        .result {
+            margin-top: 18px;
+            font-size: 1.08em;
+            text-align: center;
+            color: #2d5a3a;
+            background: #f2f7f3;
+            border-radius: 6px;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+<div class="bg-image"></div>
+<div class="container">
+    <h2>Crop Yield Prediction</h2>
+    <form method="post">
+        {% for feat in main_features %}
+            <label>{{ feat.replace('_', ' ').title() }}:</label>
+            <input type="number" step="any" name="{{ feat }}" value="{{ main_inputs[feat] }}">
+        {% endfor %}
+        {% for cat, options in categorical_features.items() %}
+            <label>{{ cat }}:</label>
+            <select name="{{ cat }}" size="1" style="max-height:120px; overflow-y:auto;">
+                <option value="">Select {{ cat }}</option>
+                {% for opt in options %}
+                    <option value="{{ opt }}" {% if selected[cat]==opt %}selected{% endif %}>{{ opt }}</option>
+                {% endfor %}
+            </select>
+        {% endfor %}
+        <button type="submit">Predict</button>
+    </form>
+    {% if prediction is not none %}
+        <div class="result">
+            <strong>Predicted Yield:</strong>
+            {{ prediction.split(' (')[0] }}
+            <br>
+            <span style="font-size:0.98em; color:#2d5a3a;">(kilograms per hectare)</span>
+        </div>
+    {% endif %}
+</div>
+</body>
+</html>
