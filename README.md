@@ -64,7 +64,6 @@ pip install -r requirements.txt
 ```bash
 python app.py
 ```
-Open your browser at [http://127.0.0.1:5000/](http://127.0.0.1:5000/)
 
 ### 5️⃣ Make Predictions
 Enter the required values and click Predict to get crop yield in **kg/ha**.
