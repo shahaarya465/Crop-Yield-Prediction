@@ -7,3 +7,4 @@ xgboost
 flask
 scipy
 jinja2
+gunicorn
