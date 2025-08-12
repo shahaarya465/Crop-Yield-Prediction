@@ -1,4 +1,8 @@
+
 # Crop Yield Prediction
+
+## 🚀 Live Demo
+[Try the app on Render](https://crop-yield-prediction-jj38.onrender.com)
 
 This project predicts crop yield using machine learning models trained on agricultural, environmental, and historical data. The workflow includes data exploration, preprocessing, feature engineering, model training, evaluation, and deployment as a Flask web app.
 
