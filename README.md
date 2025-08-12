@@ -1,10 +1,5 @@
 # 🌾 Crop Yield Prediction Web App
 
-🚀 **Live Demo:** [Try the App on Render](https://crop-yield-prediction-ji38.onrender.com)
-📊 **Dataset:** [Crop Yield Prediction Dataset (Kaggle)](https://www.kaggle.com/datasets/mrigaankjaswal/crop-yield-prediction-dataset)
-
----
-
 ## 📖 Project Overview
 
 This project is a **full-stack machine learning solution** for predicting crop yield based on **agricultural, environmental, and historical data**.
